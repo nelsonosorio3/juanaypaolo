@@ -14,7 +14,7 @@ function MessageBoardSection({
       <h2>{texts[language].msgTitle}</h2>
       <div className="message-board">
         <form className="message-board-form" onSubmit={handleAddMessage}>
-          <input
+          <textarea
             type="text"
             placeholder={texts[language].msgPlaceholder}
             value={messageInput.message}
