@@ -15,7 +15,7 @@ function Login({
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
-        <label>{texts[language].loginLanguageLabel}</label>
+        <label className="login-form-label">{texts[language].loginLanguageLabel}</label>
         <select
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
