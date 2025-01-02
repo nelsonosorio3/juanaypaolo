@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import { texts } from './data/texts';
 import HeroSection from './components/HeroSection';
@@ -198,7 +198,7 @@ function App() {
   };
 
   // === UPDATED handleGetMessages WITH LOADER & SNACKBAR (optional) ===
-  const handleGetMessages = async () => {
+  const handleGetMessages = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get('https://juanaypaolo-api.onrender.com/messages');
@@ -214,13 +214,13 @@ function App() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [language]);
 
   useEffect(() => {
     if (selectedSection === 'message-board') {
       handleGetMessages();
     }
-  }, [selectedSection]);
+  }, [selectedSection, handleGetMessages]);
 
   return (
     <>
