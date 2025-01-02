@@ -1,30 +1,30 @@
 // src/components/Navbar.jsx
 import React from "react";
-import texts from "../data/texts";
+import { texts } from '../data/texts';
 
-function Navbar({ language, onNavClick }) {
+function NavBar({ language, onNavClick }) {
   return (
     <nav className="navbar">
-      <button onClick={() => onNavClick("calendar")}>
+      <a onClick={() => onNavClick("calendar")}>
         {texts[language].navbar.calendar}
-      </button>
-      <button onClick={() => onNavClick("gallery")}>
+      </a>
+      <a onClick={() => onNavClick("gallery")}>
         {texts[language].navbar.gallery}
-      </button>
-      <button onClick={() => onNavClick("gifts")}>
+      </a>
+      <a onClick={() => onNavClick("gifts")}>
         {texts[language].navbar.gifts}
-      </button>
-      <button onClick={() => onNavClick("recommendations")}>
+      </a>
+      <a onClick={() => onNavClick("recommendations")}>
         {texts[language].navbar.recommendations}
-      </button>
-      <button onClick={() => onNavClick("rsvp")}>
+      </a>
+      <a onClick={() => onNavClick("rsvp")}>
         {texts[language].navbar.rsvp}
-      </button>
-      <button onClick={() => onNavClick("message-board")}>
+      </a>
+      <a onClick={() => onNavClick("message-board")}>
         {texts[language].navbar.messageBoard}
-      </button>
+      </a>
     </nav>
   );
 }
 
-export default Navbar;
+export default NavBar;

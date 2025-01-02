@@ -1,120 +1,93 @@
 // src/components/HeroSection.js
 import React, { useState, useEffect } from 'react';
+import { texts } from '../data/texts';
+import coupleIMG from '../assets/couple.png';
 
 function HeroSection({ language }) {
   const [scrollY, setScrollY] = useState(0);
   const [windowHeight, setWindowHeight] = useState(
-    typeof window !== "undefined" ? window.innerHeight : 800
+    typeof window !== 'undefined' ? window.innerHeight : 800
   );
-  const targetDate = new Date("2025-08-03T15:45:00");
+  
+  // Only calculating *days* until target date
+  const [daysLeft, setDaysLeft] = useState(0);
 
-  // State to hold the countdown
-  const [countdown, setCountdown] = useState({
-    months: 0,
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  // Adjust this for your final date/time
+  const targetDate = new Date('2025-08-03T15:45:00');
 
   useEffect(() => {
+    // Update scroll position
     function handleScroll() {
       setScrollY(window.scrollY);
     }
+    // Update window height
     function handleResize() {
       setWindowHeight(window.innerHeight);
     }
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
-  // Scroll-based calculations
+  // Parallax scrolling effect
   const scrollRatio = Math.min(scrollY / windowHeight, 1);
-  const translateYPercent = 100 - 100 * scrollRatio;
+  const translateYPercent = 100 - scrollRatio * 100;
 
-  // Determine text visibility
+  // Which text to show at which scroll ratio
   const showFirstText = scrollRatio >= 0.25 && scrollRatio < 0.60;
-  const showSecondText = scrollRatio >= 0.60 && scrollRatio < 0.99;
-  // We won't actually get beyond 1.0 if the page doesn't scroll more than 1 window height:
-  const showThirdText = scrollRatio >= 1;
+  const showSecondText = scrollRatio >= 0.60 && scrollRatio < 1.0;
 
   // Text content
-  const firstText = language === "en" ? "We have a date!" : "¡Tenemos una fecha!";
+  const firstText = language === 'en' ? 'We have a date!' : '¡Tenemos una fecha!';
   const secondText =
-    language === "en"
-      ? "Juana & Paolo\nMedellin - Colombia\nAugust 3, 2025"
-      : "Juana & Paolo\nMedellín - Colombia\n3 de agosto, 2025";
+    language === 'en'
+      ? 'Juana & Paolo\nMedellin - Colombia\nAugust 3, 2025'
+      : 'Juana & Paolo\nMedellín - Colombia\n3 de agosto, 2025';
 
-  // Function to calculate countdown
-  const calculateCountdown = () => {
+  // Calculate only the days left
+  const calculateDaysLeft = () => {
     const now = new Date();
-    if (now >= targetDate) {
-      // Event has already passed
-      return { months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 };
-    }
-
-    // Calculate total months difference first
-    let totalMonths =
-      (targetDate.getFullYear() - now.getFullYear()) * 12 +
-      (targetDate.getMonth() - now.getMonth());
-
-    // Create a temporary date from current date advanced by totalMonths
-    let tempDate = new Date(now.getTime());
-    tempDate.setMonth(tempDate.getMonth() + totalMonths);
-
-    // If tempDate surpasses targetDate, reduce one month
-    if (tempDate > targetDate) {
-      totalMonths -= 1;
-      tempDate = new Date(now.getTime());
-      tempDate.setMonth(tempDate.getMonth() + totalMonths);
-    }
-
-    // Now calculate the remainder of the time after removing full months
-    let diff = targetDate.getTime() - tempDate.getTime(); // milliseconds
-
-    const seconds = Math.floor(diff / 1000) % 60;
-    const minutes = Math.floor(diff / (1000 * 60)) % 60;
-    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-    return { months: totalMonths, days, hours, minutes, seconds };
+    const diff = targetDate - now;
+    return diff <= 0 ? 0 : Math.floor(diff / (1000 * 60 * 60 * 24));
   };
 
   useEffect(() => {
-    // Update the countdown every second
-    const interval = setInterval(() => {
-      setCountdown(calculateCountdown());
+    // Update days left every second (could be every day if you prefer)
+    const intervalId = setInterval(() => {
+      setDaysLeft(calculateDaysLeft());
     }, 1000);
 
-    // Initial calculation
-    setCountdown(calculateCountdown());
+    // Initial call
+    setDaysLeft(calculateDaysLeft());
 
-    return () => clearInterval(interval);
+    return () => clearInterval(intervalId);
   }, []);
 
-  const thirdText =
-    language === "en"
-      ? `Time until the big day:
-${countdown.months} m, ${countdown.days} d, ${countdown.hours} h, ${countdown.minutes} m, ${countdown.seconds} s`
-      : `Tiempo hasta el gran día:
-${countdown.months} m, ${countdown.days} d, ${countdown.hours} h, ${countdown.minutes} m, ${countdown.seconds} s`;
+  // Single-line countdown text
+  const countdownText =
+    language === 'en'
+      ? `${daysLeft} day${daysLeft === 1 ? '' : 's'}`
+      : `${daysLeft} día${daysLeft === 1 ? '' : 's'}`;
 
   return (
     <div className="hero-container">
+      {/* Parallax background (defined in CSS) */}
       <div className="hero-background"></div>
+
       <div
         className="hero-foreground"
-        style={{ transform: `translateX(-50%) translateY(${translateYPercent}%)` }}
+        style={{
+          transform: `translateX(-50%) translateY(${translateYPercent}%)`,
+        }}
       >
         <img
-          src="https://i.ibb.co/B26w7HC/FOTO-PARA-WEB-PAGE-NO-BACKGROUND.png"
-          alt={language === "en" ? "Hero Image" : "Imagen Hero"}
+          src={coupleIMG}
+          alt={language === 'en' ? 'Hero Image' : 'Imagen Hero'}
         />
       </div>
 
@@ -130,13 +103,13 @@ ${countdown.months} m, ${countdown.days} d, ${countdown.hours} h, ${countdown.mi
         className="hero-text hero-text-second"
         style={{ opacity: showSecondText ? 1 : 0 }}
       >
+        {/* Split the secondText by line */}
         {secondText.split('\n').map((line, i) => (
-          <div key={i}>
-            <div>{line}</div>
-          </div>
+          <div key={i}>{line}</div>
         ))}
-        {/* You can comment this out or adjust if you don't want the live countdown in the second text */}
-        <div>{thirdText.split('\n')[1]}</div>
+
+        {/* Days-only countdown */}
+        <div>{countdownText}</div>
       </div>
     </div>
   );
