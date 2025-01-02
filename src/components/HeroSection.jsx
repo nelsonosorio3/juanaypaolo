@@ -1,6 +1,5 @@
 // src/components/HeroSection.js
 import React, { useState, useEffect } from 'react';
-import { texts } from '../data/texts';
 import coupleIMG from '../assets/couple.png';
 
 function HeroSection({ language }) {
