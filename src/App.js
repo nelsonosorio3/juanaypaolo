@@ -10,10 +10,9 @@ import RecommendationsSection from './components/RecommendationsSection';
 import RsvpSection from './components/RsvpSection';
 import MessageBoardSection from './components/MessageBoardSection';
 import NavBar from './components/Navbar';
-import song from './assets/audio/cancion.mp3'
+import song from './assets/audio/cancion.mp3';
 
 import './App.css';
-
 
 function App() {
   const [language, setLanguage] = useState("es");
@@ -22,14 +21,46 @@ function App() {
   const [loginPassword, setLoginPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
-  const [messageInput, setMessageInput] = useState({name: "", message: "", date: new Date().toISOString().split('T')[0].slice(5)});
+  const [messageInput, setMessageInput] = useState({
+    name: "",
+    message: "",
+    date: new Date().toISOString().split('T')[0].slice(5),
+  });
   const [messages, setMessages] = useState([]);
   const audioRef = useRef(null);
 
-  const [rsvp, setRsvp] = useState({name: '', email: '', attendance: 'yes', plusOne: 'no', plusOneName: '', food: ''});
+  const [rsvp, setRsvp] = useState({
+    name: '',
+    email: '',
+    attendance: 'yes',
+    plusOne: 'no',
+    plusOneName: '',
+    food: ''
+  });
 
   const [selectedSection, setSelectedSection] = useState("calendar");
 
+  // === NEW STATES FOR LOADER AND SNACKBAR ===
+  const [loading, setLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success', // or 'error'
+  });
+
+  // Close snackbar after 3 seconds automatically
+  useEffect(() => {
+    if (snackbar.open) {
+      const timer = setTimeout(() => {
+        setSnackbar((prev) => ({ ...prev, open: false }));
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [snackbar.open]);
+
+  // ... (rest of your existing code)
+
+  // Audio effect
   useEffect(() => {
     if (authorized && audioRef.current) {
       const playAudio = () => {
@@ -49,88 +80,165 @@ function App() {
     setSelectedSection(section);
   };
 
+  // === UPDATED handleLogin WITH LOADER & SNACKBAR ===
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+    setLoading(true); // show loader
+
     try {
-      const response = await axios.post(
-        'https://juanaypaolo-api.onrender.com/pass',
-        {
-          Pass: loginPassword
-        }
-      );
-  
+      const response = await axios.post('https://juanaypaolo-api.onrender.com/pass', {
+        Pass: loginPassword,
+      });
+
       if (response.status === 200) {
         setAuthorized(true);
         setLoginPassword('');
         await handleGetMessages();
+
+        // Show success snackbar
+        setSnackbar({
+          open: true,
+          message: texts[language].loginSuccess || 'Login successful!',
+          severity: 'success',
+        });
       }
     } catch (error) {
-      // If an error occurs (e.g., 401 Unauthorized), handle error logic
+      // Show error message in snackbar if any error occurs
+      setSnackbar({
+        open: true,
+        message:
+          (error.response && error.response.data && error.response.data.error) ||
+          texts[language].loginError ||
+          'An unexpected error occurred',
+        severity: 'error',
+      });
       if (error.response && error.response.data) {
-        console.error(error.response.data.error);
         setLoginError(error.response.data.error);
       } else {
         console.error('An unexpected error occurred:', error);
       }
+    } finally {
+      setLoading(false); // hide loader
     }
   };
 
+  // === UPDATED handleRsvp WITH LOADER & SNACKBAR ===
   const handleRsvp = async (e) => {
     e.preventDefault();
-    console.log(rsvp)
+    if (
+      rsvp.name.trim().length < 5 ||
+      rsvp.email.trim().length < 5 ||
+      (rsvp.plusOne === 'yes' && rsvp.plusOneName.trim().length < 3)
+    ) {
+      return;
+    }
+    setLoading(true);
+
     try {
-      const response = await axios.post(
-        'https://juanaypaolo-api.onrender.com/submit',
-        rsvp
-      );
+      const response = await axios.post('https://juanaypaolo-api.onrender.com/submit', rsvp);
       if (response.status === 200) {
-        console.log('success')
+        setRsvp({
+          name: "",
+          email: "",
+          attendance: "yes",
+          plusOne: "no",
+          plusOneName: "",
+          food: ""
+        });
+
+        setSnackbar({
+          open: true,
+          message: texts[language].rsvpSuccess || 'RSVP submitted!',
+          severity: 'success',
+        });
       }
     } catch (error) {
-      console.error("An error ocurred: ", error)
+      setSnackbar({
+        open: true,
+        message: texts[language].rsvpError || 'Error submitting RSVP',
+        severity: 'error',
+      });
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
+  // === UPDATED handleAddMessage WITH LOADER & SNACKBAR ===
   const handleAddMessage = async (e) => {
     e.preventDefault();
-    if (!messageInput.message.trim() || !messageInput.message.trim()) return;
-    try {
+    if (!messageInput.message.trim() || !messageInput.name.trim()) return;
 
-      const response = await axios.post(
-        'https://juanaypaolo-api.onrender.com/messages',
-        messageInput
-      );
+    setLoading(true);
+
+    try {
+      const response = await axios.post('https://juanaypaolo-api.onrender.com/messages', messageInput);
       if (response.status === 200) {
-        setMessageInput({name: "", message: "", date: new Date().toISOString().split('T')[0].slice(5)});
-        await handleGetMessages()
+        setMessageInput({
+          name: "",
+          message: "",
+          date: new Date().toISOString().split('T')[0].slice(5),
+        });
+        await handleGetMessages();
+
+        setSnackbar({
+          open: true,
+          message: texts[language].messageSuccess || 'Message posted!',
+          severity: 'success',
+        });
       }
     } catch (error) {
-      console.error("An error ocurred: ", error)
+      setSnackbar({
+        open: true,
+        message: texts[language].messageError || 'Error posting message',
+        severity: 'error',
+      });
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
+  // === UPDATED handleGetMessages WITH LOADER & SNACKBAR (optional) ===
   const handleGetMessages = async () => {
+    setLoading(true);
     try {
-      const response = await axios.get(
-        'https://juanaypaolo-api.onrender.com/messages'
-      );
+      const response = await axios.get('https://juanaypaolo-api.onrender.com/messages');
       if (response.status === 200) {
-        setMessages(response.data)
+        setMessages(response.data);
       }
     } catch (error) {
-      console.error("An error ocurred: ", error)
+      setSnackbar({
+        open: true,
+        message: texts[language].fetchMessagesError || 'Error fetching messages',
+        severity: 'error',
+      });
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (selectedSection === 'message-board') {
       handleGetMessages();
     }
-  }, [selectedSection])
+  }, [selectedSection]);
 
   return (
     <>
+      {/* === LOADER OVERLAY === */}
+      {loading && (
+        <div className="loader-overlay">
+          <div className="loader-spinner"></div>
+          <p>{texts[language].loading || 'Loading...'}</p>
+        </div>
+      )}
+
+      {/* === SNACKBAR === */}
+      {snackbar.open && (
+        <div className={`snackbar ${snackbar.severity}`}>
+          {snackbar.message}
+        </div>
+      )}
+
       {authorized && (
         <audio
           ref={audioRef}
@@ -157,23 +265,20 @@ function App() {
       ) : (
         <>
           <HeroSection language={language} />
-          <NavBar language={language} onNavClick={handleNavClick} />
+          <NavBar language={language} onNavClick={handleNavClick} selectedSection={selectedSection} />
 
           <main>
-            {selectedSection === "calendar" && (
-              <CalendarSection language={language} />
-            )}
-            {selectedSection === "gallery" && (
-              <GallerySection language={language} />
-            )}
-            {selectedSection === "gifts" && (
-              <GiftsSection language={language} />
-            )}
-            {selectedSection === "recommendations" && (
-              <RecommendationsSection language={language} />
-            )}
+            {selectedSection === "calendar" && <CalendarSection language={language} />}
+            {selectedSection === "gallery" && <GallerySection language={language} />}
+            {selectedSection === "gifts" && <GiftsSection language={language} />}
+            {selectedSection === "recommendations" && <RecommendationsSection language={language} />}
             {selectedSection === "rsvp" && (
-              <RsvpSection language={language} setRsvp={setRsvp} handleRsvp={handleRsvp} rsvp={rsvp}/>
+              <RsvpSection
+                language={language}
+                setRsvp={setRsvp}
+                handleRsvp={handleRsvp}
+                rsvp={rsvp}
+              />
             )}
             {selectedSection === "message-board" && (
               <MessageBoardSection

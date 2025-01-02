@@ -26,7 +26,7 @@ function MessageBoardSection({
             value={messageInput.name}
             onChange={(e) => setMessageInput((current) => ({...current, name: e.target.value}))}
           />
-          <button type="submit">{texts[language].msgAddButton}</button>
+          <button type="submit" disabled={!messageInput.message.trim() || !messageInput.name.trim()} className={!messageInput.message.trim() || !messageInput.name.trim()? 'button-message-disabled' : 'button-message'}>{texts[language].msgAddButton}</button>
         </form>
         <div className="message-board-list">
         {messages.map((msg, i) => (

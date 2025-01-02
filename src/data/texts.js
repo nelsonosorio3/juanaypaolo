@@ -62,13 +62,20 @@ export const texts = {
       loginLanguageLabel: "Select language:",
       loginPasswordPlaceholder: "Enter password",
       loginButton: "Enter",
-      loginError: "Incorrect password. Try again.",
       hotels: "Hotels",
       activities: "Activities and Food",
       transportation: "Transport",
       yes: "Yes",
       emailOrPhone: "Email or Phone",
-      foodPreferences: "Food preference "
+      foodPreferences: "Food preference ",
+      loading: "Loading...",
+      loginSuccess: "Access successful!",
+      loginError: "Failed to access",
+      rsvpSuccess: "RSVP submitted!",
+      rsvpError: "Error submitting RSVP",
+      messageSuccess: "Message posted!",
+      messageError: "Error posting message",
+      fetchMessagesError: "Error fetching messages"
     },
     es: {
       heroAlt: "Pareja besándose",
@@ -131,13 +138,20 @@ export const texts = {
       loginLanguageLabel: "Selecciona el idioma:",
       loginPasswordPlaceholder: "Ingresa la contraseña",
       loginButton: "Entrar",
-      loginError: "Contraseña incorrecta. Inténtalo de nuevo.",
       hotels: "Estadia y Hoteles",
       activities: "Actividades y Comida",
       transportation: "Trasporte",
       yes: "Sí",
       emailOrPhone: "Email o Celular",
-      foodPreferences: "Preferencia Alimenticia"
+      foodPreferences: "Preferencia Alimenticia",
+      loading: "Cargando...",
+      loginSuccess: "¡Acceso exitoso!",
+      loginError: "Error al iniciar sesión",
+      rsvpSuccess: "¡Tu confirmación fue enviada!",
+      rsvpError: "Error al enviar tu confirmación",
+      messageSuccess: "¡Mensaje publicado!",
+      messageError: "Error al publicar el mensaje",
+      fetchMessagesError: "Error al obtener mensajes"
     }
   };
   
