@@ -95,7 +95,11 @@ body {
   flex-wrap: wrap;
 }
 
-.navbar a {
+.navbar button {
+  background: none;        /* Remove default background */
+  border: none;            /* Remove default border */
+  margin: 0;               /* Remove default margin */
+  cursor: pointer;         /* Show a pointer cursor on hover */
   color: var(--accent);
   text-decoration: none;
   margin: 0 1rem;
@@ -103,9 +107,11 @@ body {
   transition: color 0.3s;
   text-transform: uppercase;
   cursor: pointer;
+  font-family: 'NiagaraSolid';
+  font-size: 24px;
 }
 
-.navbar a:hover {
+.navbar button:hover {
   color: var(--primary);
 }
 
