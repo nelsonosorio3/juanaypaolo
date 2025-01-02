@@ -296,6 +296,10 @@ footer {
   cursor: pointer;
 }
 
+.login-form-label {
+  text-align: center;
+}
+
 .login-error {
   color: red;
   text-align: center;

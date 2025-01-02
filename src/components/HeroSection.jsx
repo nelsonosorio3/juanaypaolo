@@ -2,17 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import coupleIMG from '../assets/couple.png';
 
+  // Calculate only the days left
+  const calculateDaysLeft = (tar) => {
+    const now = new Date();
+    const diff = new Date('2025-08-03T00:00:00') - now;
+    return diff <= 0 ? 0 : Math.floor(diff / (1000 * 60 * 60 * 24));
+  };
+
 function HeroSection({ language }) {
   const [scrollY, setScrollY] = useState(0);
   const [windowHeight, setWindowHeight] = useState(
     typeof window !== 'undefined' ? window.innerHeight : 800
   );
-  
-  // Only calculating *days* until target date
-  const [daysLeft, setDaysLeft] = useState(0);
 
-  // Adjust this for your final date/time
-  const targetDate = new Date('2025-08-03T15:45:00');
+  const daysLeft = calculateDaysLeft();
 
   useEffect(() => {
     // Update scroll position
@@ -47,25 +50,6 @@ function HeroSection({ language }) {
     language === 'en'
       ? 'Juana & Paolo\nMedellin - Colombia\nAugust 3, 2025'
       : 'Juana & Paolo\nMedellín - Colombia\n3 de agosto, 2025';
-
-  // Calculate only the days left
-  const calculateDaysLeft = () => {
-    const now = new Date();
-    const diff = targetDate - now;
-    return diff <= 0 ? 0 : Math.floor(diff / (1000 * 60 * 60 * 24));
-  };
-
-  useEffect(() => {
-    // Update days left every second (could be every day if you prefer)
-    const intervalId = setInterval(() => {
-      setDaysLeft(calculateDaysLeft());
-    }, 1000);
-
-    // Initial call
-    setDaysLeft(calculateDaysLeft());
-
-    return () => clearInterval(intervalId);
-  }, []);
 
   // Single-line countdown text
   const countdownText =
