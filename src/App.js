@@ -22,7 +22,7 @@ function App() {
   const [loginPassword, setLoginPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
-  const [messageInput, setMessageInput] = useState("");
+  const [messageInput, setMessageInput] = useState({name: "", message: "", date: new Date().toISOString().split('T')[0].slice(5)});
   const [messages, setMessages] = useState([]);
   const audioRef = useRef(null);
 
@@ -49,13 +49,6 @@ function App() {
     setSelectedSection(section);
   };
 
-  const handleAddMessage = (e) => {
-    e.preventDefault();
-    if (!messageInput.trim()) return;
-    setMessages([...messages, messageInput]);
-    setMessageInput("");
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
   
@@ -68,8 +61,9 @@ function App() {
       );
   
       if (response.status === 200) {
-        setAuthorized(true)
-        setLoginPassword('')
+        setAuthorized(true);
+        setLoginPassword('');
+        await handleGetMessages();
       }
     } catch (error) {
       // If an error occurs (e.g., 401 Unauthorized), handle error logic
@@ -97,6 +91,43 @@ function App() {
       console.error("An error ocurred: ", error)
     }
   }
+
+  const handleAddMessage = async (e) => {
+    e.preventDefault();
+    if (!messageInput.message.trim() || !messageInput.message.trim()) return;
+    try {
+
+      const response = await axios.post(
+        'https://juanaypaolo-api.onrender.com/messages',
+        messageInput
+      );
+      if (response.status === 200) {
+        setMessageInput({name: "", message: "", date: new Date().toISOString().split('T')[0].slice(5)});
+        await handleGetMessages()
+      }
+    } catch (error) {
+      console.error("An error ocurred: ", error)
+    }
+  }
+
+  const handleGetMessages = async () => {
+    try {
+      const response = await axios.get(
+        'https://juanaypaolo-api.onrender.com/messages'
+      );
+      if (response.status === 200) {
+        setMessages(response.data)
+      }
+    } catch (error) {
+      console.error("An error ocurred: ", error)
+    }
+  }
+
+  useEffect(() => {
+    if (selectedSection === 'message-board') {
+      handleGetMessages();
+    }
+  }, [selectedSection])
 
   return (
     <>
@@ -151,6 +182,7 @@ function App() {
                 setMessageInput={setMessageInput}
                 messages={messages}
                 handleAddMessage={handleAddMessage}
+                handleGetMessages={handleGetMessages}
               />
             )}
           </main>
