@@ -17,17 +17,30 @@ function MessageBoardSection({
           <input
             type="text"
             placeholder={texts[language].msgPlaceholder}
-            value={messageInput}
-            onChange={(e) => setMessageInput(e.target.value)}
+            value={messageInput.message}
+            onChange={(e) => setMessageInput((current) => ({...current, message: e.target.value}))}
+          />
+          <input
+            type="text"
+            placeholder={texts[language].msgPlaceholderName}
+            value={messageInput.name}
+            onChange={(e) => setMessageInput((current) => ({...current, name: e.target.value}))}
           />
           <button type="submit">{texts[language].msgAddButton}</button>
         </form>
         <div className="message-board-list">
-          {messages.map((msg, i) => (
-            <div className="message-board-item" key={i}>
-              {msg}
+        {messages.map((msg, i) => (
+        <div
+            key={i}
+            className={`chat-bubble ${i % 2 === 0 ? 'left' : 'right'}`}
+        >
+            <div className="chat-header">
+            <span className="chat-name">{msg.name}</span>
+            <span className="chat-date">{msg.date}</span>
             </div>
-          ))}
+            <div className="chat-message">{msg.message}</div>
+        </div>
+        ))}
         </div>
       </div>
     </section>

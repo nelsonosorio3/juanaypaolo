@@ -210,6 +210,8 @@ section h2::after {
 }
 .message-board-form {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -219,11 +221,12 @@ section h2::after {
   padding: 0.5rem;
 }
 .message-board-form button {
-  background: var(--accent);
+  background: rgb(214, 134, 86);
   color: #fff;
   border: none;
   padding: 0.5rem 0.7rem;
   border-radius: 4px;
+  width: 100%;
   cursor: pointer;
 }
 .message-board-list {
@@ -317,4 +320,79 @@ input::placeholder {
 
 textarea::placeholder {
   font-size: 24px;
+}
+
+
+
+/* Container that holds the entire message list
+   Fixed height, scrollable, background: var(--accent)
+*/
+.message-board-list {
+  width: 100%;
+  max-width: 600px;       /* Adjust as desired */
+  height: 400px;          /* Adjust as desired */
+  background-color: var(--accent);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 0 auto;         /* Center it horizontally if you like */
+}
+
+/* Common bubble styles */
+.chat-bubble {
+  color: var(--bg);
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  max-width: 60%;         /* Restrict bubble width so it looks like a chat */
+  position: relative;     /* For positioning name/date elements if needed */
+  word-wrap: break-word;  /* Ensure long text wraps nicely */
+  font-family: 'serif';
+  font-size: 16px;
+}
+
+/* Alternate left and right bubbles */
+.chat-bubble.left {
+  background-color: var(--highlight);
+  align-self: flex-start;
+  border-radius: 12px 12px 12px 0; 
+  width: 80%;
+}
+
+.chat-bubble.right {
+  background-color: var(--primary);
+  align-self: flex-end;
+  border-radius: 12px 12px 0 12px;
+  width: 80%
+}
+
+/* Header within the bubble: name on the left, date on the right */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px; 
+  font-size: 12px;
+}
+
+/* Name in bold, date in italics */
+.chat-name {
+  font-weight: bold;
+}
+
+.chat-date {
+  font-style: italic;
+}
+
+/* Responsive tweaks for smaller screens */
+@media (max-width: 600px) {
+  .message-board-list {
+    max-width: 90%;
+    height: 300px; /* Adjust for smaller screens */
+  }
+
+  .chat-bubble {
+    max-width: 100%; /* Let bubbles use more horizontal space on mobile */
+  }
 }
