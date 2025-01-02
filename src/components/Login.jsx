@@ -30,7 +30,6 @@ function Login({
           onChange={(e) => setLoginPassword(e.target.value)}
         />
         <button type="submit">{texts[language].loginButton}</button>
-        {loginError && <div className="login-error">{loginError}</div>}
       </form>
     </div>
   );

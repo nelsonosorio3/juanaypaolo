@@ -26,13 +26,8 @@ function RsvpSection({ language, setRsvp, handleRsvp, rsvp }) {
         <label>{texts[language].foodPreferences}</label>
         <textarea placeholder={texts[language].rsvpFoodPlaceholder} onChange={(e) => setRsvp((prev) => ({...prev, food: e.target.value}))} value={rsvp.food}></textarea>
         <button
-          style={{
-            background: "#d68656",
-            color: "#fff",
-            border: "none",
-            padding: "0.5rem",
-            borderRadius: "4px"
-          }}
+          className={rsvp.name.trim().length < 5 || rsvp.email.trim().length < 5 || (rsvp.plusOne === 'yes' && rsvp.plusOneName.trim().length < 3)? 'button-rsvp-disabled' : 'button-rsvp'}
+          disabled={rsvp.name.trim().length < 5 || rsvp.email.trim().length < 5 || (rsvp.plusOne === 'yes' && rsvp.plusOneName.trim().length < 3)}
         >
           {texts[language].rsvpSubmit}
         </button>
