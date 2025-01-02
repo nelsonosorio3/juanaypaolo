@@ -96,10 +96,10 @@ body {
 }
 
 .navbar button {
-  background: none;        /* Remove default background */
-  border: none;            /* Remove default border */
-  margin: 0;               /* Remove default margin */
-  cursor: pointer;         /* Show a pointer cursor on hover */
+  background: none;
+  border: none;           
+  margin: 0;             
+  cursor: pointer;         
   color: var(--accent);
   text-decoration: none;
   margin: 0 1rem;
@@ -143,6 +143,7 @@ section h2::after {
 /* Calendar Items */
 .calendar-item {
   margin-bottom: 2rem;
+  text-align: center;
 }
 .calendar-item h3 {
   font-size: 48px;
@@ -179,6 +180,7 @@ section h2::after {
 /* Recommendations */
 .rec-section {
   margin: 1rem 0;
+  text-align: center;
 }
 .rec-section h4 {
   margin: 0.5rem 0;
@@ -259,6 +261,10 @@ footer {
 
   .hero-text-second {
     font-size: 48px;
+  }
+
+  section h2 {
+    font-size: 68px;
   }
 }
 
