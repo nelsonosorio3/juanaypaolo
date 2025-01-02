@@ -5,24 +5,24 @@ import { texts } from '../data/texts';
 function NavBar({ language, onNavClick }) {
   return (
     <nav className="navbar">
-      <a onClick={() => onNavClick("calendar")}>
+      <button onClick={() => onNavClick("calendar")} className="button-as-link">
         {texts[language].navbar.calendar}
-      </a>
-      <a onClick={() => onNavClick("gallery")}>
+      </button>
+      <button onClick={() => onNavClick("gallery")}  className="button-as-link">
         {texts[language].navbar.gallery}
-      </a>
-      <a onClick={() => onNavClick("gifts")}>
+      </button>
+      <button onClick={() => onNavClick("gifts")}  className="button-as-link">
         {texts[language].navbar.gifts}
-      </a>
-      <a onClick={() => onNavClick("recommendations")}>
+      </button>
+      <button onClick={() => onNavClick("recommendations")}  className="button-as-link">
         {texts[language].navbar.recommendations}
-      </a>
-      <a onClick={() => onNavClick("rsvp")}>
+      </button>
+      <button onClick={() => onNavClick("rsvp")}  className="button-as-link">
         {texts[language].navbar.rsvp}
-      </a>
-      <a onClick={() => onNavClick("message-board")}>
+      </button>
+      <button onClick={() => onNavClick("message-board")}  className="button-as-link">
         {texts[language].navbar.messageBoard}
-      </a>
+      </button>
     </nav>
   );
 }
