@@ -54,8 +54,8 @@ function HeroSection({ language }) {
   // Single-line countdown text
   const countdownText =
     language === 'en'
-      ? `${daysLeft} day${daysLeft === 1 ? '' : 's'}`
-      : `${daysLeft} día${daysLeft === 1 ? '' : 's'}`;
+      ? `${daysLeft} day${daysLeft === 1 ? '' : 's'} left`
+      : `Faltan ${daysLeft} día${daysLeft === 1 ? '' : 's'}`;
 
   return (
     <div className="hero-container">

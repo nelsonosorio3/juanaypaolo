@@ -90,7 +90,7 @@ export const texts = {
           details: "Detalles pronto"
         },
         {
-          title: "Bienvenida: Finca de la flores",
+          title: "Bienvenida: Finca de las flores",
           date: "Jueves julio 31, 2025",
           details: "Detalles pronto"
         },

@@ -22,7 +22,13 @@ import photo18 from '../assets/gallery/18.HEIC';
 import photo19 from '../assets/gallery/19.JPG';
 import photo20 from '../assets/gallery/20.HEIC';
 import photo21 from '../assets/gallery/21.jpg';
-
+import photo22 from '../assets/gallery/22.jpg';
+import photo23 from '../assets/gallery/23.jpg';
+import photo24 from '../assets/gallery/24.jpg';
+import photo25 from '../assets/gallery/25.HEIC';
+import photo26 from '../assets/gallery/26.HEIC';
+import photo27 from '../assets/gallery/27.HEIC';
+import photo28 from '../assets/gallery/28.jpg';
 
 function GallerySection({ language }) {
   return (
@@ -111,6 +117,34 @@ function GallerySection({ language }) {
         />
         <img
           src={photo21}
+          alt="Gallery item"
+        />
+        <img
+          src={photo22}
+          alt="Gallery item"
+        />
+        <img
+          src={photo23}
+          alt="Gallery item"
+        />
+        <img
+          src={photo24}
+          alt="Gallery item"
+        />
+        <img
+          src={photo25}
+          alt="Gallery item"
+        />
+        <img
+          src={photo26}
+          alt="Gallery item"
+        />
+        <img
+          src={photo27}
+          alt="Gallery item"
+        />
+        <img
+          src={photo28}
           alt="Gallery item"
         />
       </div>

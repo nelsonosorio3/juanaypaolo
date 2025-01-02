@@ -1,5 +1,5 @@
-// src/App.js
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 import { texts } from './data/texts';
 import HeroSection from './components/HeroSection';
 import Login from './components/Login';
@@ -25,6 +25,8 @@ function App() {
   const [messageInput, setMessageInput] = useState("");
   const [messages, setMessages] = useState([]);
   const audioRef = useRef(null);
+
+  const [rsvp, setRsvp] = useState({name: '', email: '', attendance: 'yes', plusOne: 'no', plusOneName: '', food: ''});
 
   const [selectedSection, setSelectedSection] = useState("calendar");
 
@@ -54,15 +56,47 @@ function App() {
     setMessageInput("");
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (loginPassword === "colombia2025") {
-      setAuthorized(true);
-      setLoginError("");
-    } else {
-      setLoginError(texts[language].loginError);
+  
+    try {
+      const response = await axios.post(
+        'https://juanaypaolo-api.onrender.com/pass',
+        {
+          Pass: loginPassword
+        }
+      );
+  
+      if (response.status === 200) {
+        setAuthorized(true)
+        setLoginPassword('')
+      }
+    } catch (error) {
+      // If an error occurs (e.g., 401 Unauthorized), handle error logic
+      if (error.response && error.response.data) {
+        console.error(error.response.data.error);
+        setLoginError(error.response.data.error);
+      } else {
+        console.error('An unexpected error occurred:', error);
+      }
     }
   };
+
+  const handleRsvp = async (e) => {
+    e.preventDefault();
+    console.log(rsvp)
+    try {
+      const response = await axios.post(
+        'https://juanaypaolo-api.onrender.com/submit',
+        rsvp
+      );
+      if (response.status === 200) {
+        console.log('success')
+      }
+    } catch (error) {
+      console.error("An error ocurred: ", error)
+    }
+  }
 
   return (
     <>
@@ -108,7 +142,7 @@ function App() {
               <RecommendationsSection language={language} />
             )}
             {selectedSection === "rsvp" && (
-              <RsvpSection language={language} />
+              <RsvpSection language={language} setRsvp={setRsvp} handleRsvp={handleRsvp} rsvp={rsvp}/>
             )}
             {selectedSection === "message-board" && (
               <MessageBoardSection
