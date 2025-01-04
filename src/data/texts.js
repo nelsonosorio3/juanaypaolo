@@ -17,11 +17,6 @@ export const texts = {
       scheduleTitle: "Schedule",
       scheduleItems: [
         {
-          title: "Groom’s birthday",
-          date: "Tuesday, July 29, 2025",
-          details: "Details to come"
-        },
-        {
           title: "Welcome Party",
           date: "Thursday, July 31, 2025",
           details: "Details to come"
@@ -72,6 +67,7 @@ export const texts = {
       messageSuccess: "Message posted!",
       messageError: "Error posting message",
       fetchMessagesError: "Error fetching messages",
+      fetchCalendarError: "Error Fetching calendar data",
       arrival: "Arrival in Medellín",
       recArrival: "The José Maria Córdoba International Airport (MDE) is on the outskirts of Medellín in Rionegro. The Uber is about $30 dollars.",
       hotels: "Lodging in Medellín ",
@@ -107,11 +103,6 @@ export const texts = {
       },
       scheduleTitle: "Calendario",
       scheduleItems: [
-        {
-          title: "Cumpleaños del Novio",
-          date: "Martes 29 de julio, 2025",
-          details: "Detalles pronto"
-        },
         {
           title: "Bienvenida: Finca de las flores",
           date: "Jueves julio 31, 2025",
@@ -164,6 +155,7 @@ export const texts = {
       messageSuccess: "¡Mensaje publicado!",
       messageError: "Error al publicar el mensaje",
       fetchMessagesError: "Error al obtener mensajes",
+      fetchCalendarError: "Error al obetener calendario",
       arrival: "Llegada a Medellín ",
       recArrival: "El aereopuerto internacional José Maria Córdoba (MDE) queda a las afueras de Medellín en Rionegro. El Uber son aproximadamente $30 dólares.",
       hotels: "Estadía y hoteles ",

@@ -1,15 +1,7 @@
-@font-face {
-  font-family: 'NiagaraSolid';
-  src: url('/src/fonts/NiagaraSolid.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* Basic global styles */
 body {
   margin: 0;
-  font-family: 'NiagaraSolid', sans-serif;
-  font-size: 48px;
+  font-family: serif;
+  font-size: 24px;
   background: #f4f7eb;
   color: #960f16;
 }
@@ -28,9 +20,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  font-size: 72px;
+  font-size: 36px;
   font-weight: bolder;
-  font-family: 'NiagaraSolid';
+  font-family: serif;
   transition: opacity 0.5s ease-in-out;
   pointer-events: none;
   width: 100%;
@@ -47,7 +39,7 @@ body {
 .hero-text-second {
   top: 50%;
   color: white;
-  font-size: 72px;
+  font-size: 36px;
   line-height: 1.4;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
@@ -107,8 +99,8 @@ body {
   transition: color 0.3s;
   text-transform: uppercase;
   cursor: pointer;
-  font-family: 'NiagaraSolid';
-  font-size: 24px;
+  font-family: serif;
+  font-size: 12px;
 }
 
 .navbar .button-active {
@@ -129,7 +121,7 @@ section {
 section h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  font-size: 96px;
+  font-size: 48px;
   font-weight: 700;
   color: var(--primary);
   position: relative;
@@ -149,13 +141,13 @@ section h2::after {
   margin-bottom: 2rem;
   text-align: center;
 }
-.calendar-item h3 {
-  font-size: 48px;
+.calendar-item h4 {
+  font-size: 24px;
   color: var(--secondary);
   margin-bottom: 0.5rem;
 }
 .calendar-date, .calendar-details {
-  font-size: 48px;
+  font-size: 24px;
   margin: 0.2rem 0;
 }
 
@@ -186,7 +178,7 @@ section h2::after {
   margin: 1rem 0;
   text-align: center;
 }
-.rec-section h4 {
+.rec-section h3 {
   margin: 0.5rem 0;
   color: var(--secondary);
 }
@@ -201,7 +193,7 @@ section h2::after {
 }
 .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
   padding: 0.5rem;
-  font-size: 48px;
+  font-size: 24px;
   border-radius: 4px;
   border: 1px solid #ccc;
   resize: vertical;
@@ -217,14 +209,14 @@ section h2::after {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 400px;
+  width: 80%;
   margin: 20px auto;
 }
 .message-board-form input, .message-board-form textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem;
-  font-size: 20px;
+  font-size: 10px;
   resize: vertical;
 }
 .button-message, .button-message-disabled {
@@ -233,7 +225,6 @@ section h2::after {
   border: none;
   padding: 0.5rem 0.7rem;
   border-radius: 4px;
-  width: 100%;
   cursor: pointer;
 }
 .message-board-list {
@@ -264,17 +255,17 @@ footer {
   }
 
   .hero-text-first {
-    font-size: 48px;
+    font-size: 24px;
     left: 140px;
     width: 100%;
   }
 
   .hero-text-second {
-    font-size: 48px;
+    font-size: 24px;
   }
 
   section h2 {
-    font-size: 68px;
+    font-size: 34px;
   }
 }
 
@@ -298,7 +289,7 @@ footer {
 .login-form input,
 .login-form select {
   padding: 0.5rem;
-  font-size: 48px;
+  font-size: 24px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
@@ -322,11 +313,11 @@ footer {
 }
 
 input::placeholder {
-  font-size: 24px;
+  font-size: 12px;
 }
 
 textarea::placeholder {
-  font-size: 24px;
+  font-size: 12px;
 }
 
 
@@ -471,7 +462,7 @@ textarea::placeholder {
   text-align: center;
   font-weight: bold;
   z-index: 99999;
-  font-family: sans-serif;
+  font-family: serif;
   font-size: 16px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }

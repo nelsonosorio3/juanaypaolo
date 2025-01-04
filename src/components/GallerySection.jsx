@@ -2,33 +2,32 @@
 import React from 'react';
 import { texts } from '../data/texts';
 import photo1 from '../assets/gallery/1.jpg';
-import photo2 from '../assets/gallery/2.heic';
-import photo3 from '../assets/gallery/3.HEIC';
+import photo2 from '../assets/gallery/2.jpg';
+import photo3 from '../assets/gallery/3.jpg';
 import photo4 from '../assets/gallery/4.jpeg';
-import photo5 from '../assets/gallery/5.HEIC';
+import photo5 from '../assets/gallery/5.jpg';
 import photo6 from '../assets/gallery/6.jpg';
 import photo7 from '../assets/gallery/7.jpg';
-import photo8 from '../assets/gallery/8.HEIC';
+import photo8 from '../assets/gallery/8.jpg';
 import photo9 from '../assets/gallery/9.JPG';
-import photo10 from '../assets/gallery/10.HEIC';
-import photo11 from '../assets/gallery/11.HEIC';
-import photo12 from '../assets/gallery/12.HEIC';
+import photo10 from '../assets/gallery/10.jpg';
+import photo11 from '../assets/gallery/11.jpg';
+import photo12 from '../assets/gallery/12.jpg';
 import photo13 from '../assets/gallery/13.jpg';
-import photo14 from '../assets/gallery/14.HEIC';
-import photo15 from '../assets/gallery/15.HEIC';
-import photo16 from '../assets/gallery/16.HEIC';
-import photo17 from '../assets/gallery/17.HEIC';
-import photo18 from '../assets/gallery/18.HEIC';
+import photo14 from '../assets/gallery/14.jpg';
+import photo15 from '../assets/gallery/15.jpg';
+import photo16 from '../assets/gallery/16.jpg';
+import photo17 from '../assets/gallery/17.jpg';
+import photo18 from '../assets/gallery/18.jpg';
 import photo19 from '../assets/gallery/19.JPG';
-import photo20 from '../assets/gallery/20.HEIC';
+import photo20 from '../assets/gallery/20.jpg';
 import photo21 from '../assets/gallery/21.jpg';
 import photo22 from '../assets/gallery/22.jpg';
 import photo23 from '../assets/gallery/23.jpg';
 import photo24 from '../assets/gallery/24.jpg';
-import photo25 from '../assets/gallery/25.HEIC';
-import photo26 from '../assets/gallery/26.HEIC';
-import photo27 from '../assets/gallery/27.HEIC';
-import photo28 from '../assets/gallery/28.jpg';
+import photo25 from '../assets/gallery/25.jpg';
+import photo26 from '../assets/gallery/26.jpg';
+import photo27 from '../assets/gallery/27.jpg';
 
 function GallerySection({ language }) {
   return (
@@ -141,10 +140,6 @@ function GallerySection({ language }) {
         />
         <img
           src={photo27}
-          alt="Gallery item"
-        />
-        <img
-          src={photo28}
           alt="Gallery item"
         />
       </div>

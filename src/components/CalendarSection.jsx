@@ -2,13 +2,13 @@
 import React from 'react';
 import { texts } from '../data/texts';
 
-function CalendarSection({ language }) {
+function CalendarSection({ language, calendarData }) {
   return (
     <section>
       <h2>{texts[language].scheduleTitle}</h2>
-      {texts[language].scheduleItems.map((item, i) => (
+      {calendarData?.map((item, i) => (
         <div className="calendar-item" key={i}>
-          <h3>{item.title}</h3>
+          <h4>{item.title}</h4>
           <div className="calendar-date">{item.date}</div>
           <div className="calendar-details">{item.details}</div>
         </div>
