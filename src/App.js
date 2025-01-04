@@ -11,6 +11,7 @@ import RsvpSection from './components/RsvpSection';
 import MessageBoardSection from './components/MessageBoardSection';
 import NavBar from './components/Navbar';
 import song from './assets/audio/cancion.mp3';
+import logo from './assets/logo.png';
 
 import './App.css';
 
@@ -27,6 +28,7 @@ function App() {
     date: new Date().toISOString().split('T')[0].slice(5),
   });
   const [messages, setMessages] = useState([]);
+  const [calendarData, setCalendarData] = useState([]);
   const audioRef = useRef(null);
 
   const [rsvp, setRsvp] = useState({
@@ -57,8 +59,6 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [snackbar.open]);
-
-  // ... (rest of your existing code)
 
   // Audio effect
   useEffect(() => {
@@ -222,6 +222,30 @@ function App() {
     }
   }, [selectedSection, handleGetMessages]);
 
+  const handleGetCalendar = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`https://juanaypaolo-api.onrender.com/calendar?lang=${language}`);
+      if (response.status === 200) {
+        setCalendarData(response.data);
+      }
+    } catch (error) {
+      setSnackbar({
+        open: true,
+        message: texts[language].fetchCalendarError || 'Error fetching messages',
+        severity: 'error',
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [language]);
+
+  useEffect(() => {
+    if (authorized) {
+      handleGetCalendar()
+    }
+  }, [handleGetCalendar, authorized, language])
+
   return (
     <>
       {/* === LOADER OVERLAY === */}
@@ -268,7 +292,7 @@ function App() {
           <NavBar language={language} onNavClick={handleNavClick} selectedSection={selectedSection} />
 
           <main>
-            {selectedSection === "calendar" && <CalendarSection language={language} />}
+            {selectedSection === "calendar" && <CalendarSection language={language} calendarData={calendarData} />}
             {selectedSection === "gallery" && <GallerySection language={language} />}
             {selectedSection === "gifts" && <GiftsSection language={language} />}
             {selectedSection === "recommendations" && <RecommendationsSection language={language} />}
@@ -293,7 +317,8 @@ function App() {
           </main>
 
           <footer>
-            <p>{texts[language].footerText}</p>
+            <div>{texts[language].footerText}</div>
+            <img src={logo} alt={"logo"} width={160} height={160}/>
           </footer>
         </>
       )}
