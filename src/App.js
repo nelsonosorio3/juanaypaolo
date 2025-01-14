@@ -34,9 +34,12 @@ function App() {
   const [rsvp, setRsvp] = useState({
     name: '',
     email: '',
+    phone: '',
     attendance: 'yes',
     plusOne: 'no',
     plusOneName: '',
+    welcomePart: 'no',
+    plusOneWelcomeParty: 'no',
     food: ''
   });
 
