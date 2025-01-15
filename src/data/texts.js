@@ -40,7 +40,7 @@ export const texts = {
       recFood: "If you stay around Manila/El Poblado there are many places to eat.",
       recTrans: "Uber is available\nBe a conscious tourist!",
       rsvpTitle: "RSVP",
-      rsvpPrompt: "Please RSVP before March 31st",
+      rsvpPrompt: "Please RSVP before March 1st",
       rsvpNamePlaceholder: "First and Last Name",
       rsvpAttendLabel: "Will you attend?",
       rsvpPlusOneLabel: "Plus One?",
@@ -108,7 +108,7 @@ export const texts = {
       scheduleItems: [
         {
           title: "Bienvenida: Finca de las flores",
-          date: "Jueves julio 1, 2025",
+          date: "Jueves julio 31, 2025",
           details: "Detalles pronto"
         },
         {
