@@ -58,7 +58,7 @@ function App() {
     if (snackbar.open) {
       const timer = setTimeout(() => {
         setSnackbar((prev) => ({ ...prev, open: false }));
-      }, 3000);
+      }, 5000);
       return () => clearTimeout(timer);
     }
   }, [snackbar.open]);
