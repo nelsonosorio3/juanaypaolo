@@ -180,7 +180,7 @@ export const texts = {
       recNightlife3: ". Medellin es una ciudad muy turística, así q encontrarán para todos los gustos. Tengan en mente que también por esto habrá precios más amigables y otros muchos más caros. Recomendamos revisar en Google para ver los precios de los lugares antes de entrar. Estén pendientes a las personas con las que salgan ya que están en un lugar nuevo! Entre nosotros nos mantenemos seguros.",
       activities: "Actividades y comida",
       recActivities1: "Algunos lugares de interés: comuna 13, pueblito paisa, Guatapé, sabaneta.",
-      recActivities2: "No se pierdan la gastronomía! La famosa bandeja paisa tiene origen en Medellín. Desde arepa con chorizo, pandebonos, almojabanas, buñuelos, a empanadas, y sancocho. No hay pierde y claro, no olviden acompañarlo de un buen café o juga natural (añádale aguerdiente, es opcional pero recomendado!). "
+      recActivities2: "No se pierdan la gastronomía! La famosa bandeja paisa tiene origen en Medellín. Desde arepa con chorizo, pandebonos, almojabanas, buñuelos, a empanadas, y sancocho. No hay pierde y claro, no olviden acompañarlo de un buen café o jugo natural (añádale aguerdiente, es opcional pero recomendado!). "
     }
   };
   
