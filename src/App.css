@@ -468,7 +468,7 @@ textarea::placeholder {
 }
 
 .snackbar.success {
-  background-color: var(--highlight);
+  background-color: #93C572;
 }
 
 .snackbar.error {
