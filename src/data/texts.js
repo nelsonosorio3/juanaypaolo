@@ -108,7 +108,7 @@ export const texts = {
       scheduleItems: [
         {
           title: "Bienvenida: Finca de las flores",
-          date: "Jueves julio 31, 2025",
+          date: "Jueves julio 1, 2025",
           details: "Detalles pronto"
         },
         {
