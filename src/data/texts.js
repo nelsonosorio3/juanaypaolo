@@ -2,6 +2,8 @@
 
 export const texts = {
     en: {
+      dresscode: "Dresscode",
+      gifts: "Rain of Envelopes at the wedding",
       heroAlt: "Couple Kissing",
       countdownLabel(days) {
         return days > 0 ? `${days} days to go!` : "The big day is here!";
@@ -40,7 +42,7 @@ export const texts = {
       recFood: "If you stay around Manila/El Poblado there are many places to eat.",
       recTrans: "Uber is available\nBe a conscious tourist!",
       rsvpTitle: "RSVP",
-      rsvpPrompt: "Please RSVP before March 1st",
+      rsvpPrompt: "Please RSVP before June 30th",
       rsvpNamePlaceholder: "First and Last Name",
       rsvpAttendLabel: "Will you attend?",
       rsvpPlusOneLabel: "Plus One?",
@@ -92,6 +94,8 @@ export const texts = {
       recActivities2: "Don't miss out on the gastronomy! The famous bandeja paisa originates in Medellín. From arepa with chorizo, pandebonos, almojabanas, buñuelos, to empanadas, and sancocho. You can’t go wrong, and of course don’t forget to pair it with a good cup of coffee or natural fruit juice (aguardiente is optional but encouraged). "
     },
     es: {
+      dresscode: "Vestimenta",
+      gifts: "Lluvia de Sobres en la boda",
       heroAlt: "Pareja besándose",
       countdownLabel(days) {
         return days > 0 ? `¡${days} días para el gran día!` : "¡El gran día llegó!";
@@ -131,7 +135,7 @@ export const texts = {
       recFood: "Si se quedan por Manila/el Poblado hay muchos sitios para comer.\nEjemplo de actividades: Guatapé, probar Bandeja Paisa",
       recTrans: "Hay Uber disponible.\n¡Sé un turista consciente!",
       rsvpTitle: "RSVP",
-      rsvpPrompt: "Por favor reservar antes del 1 de Marzo",
+      rsvpPrompt: "Por favor reservar antes del 30 de Junio",
       rsvpNamePlaceholder: "Nombre y Apellido",
       rsvpAttendLabel: "¿Asistirás?",
       rsvpPlusOneLabel: "¿Acompañante?",
