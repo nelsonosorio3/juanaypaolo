@@ -1,8 +1,20 @@
 // src/components/RecommendationsSection.js
 import React from 'react';
 import { texts } from '../data/texts';
+import Gallery from './Gallery.tsx';
+
+const images = { en: [
+  {src: '/images/dress_en_1.jpeg', alt: 'Dress code 1'}, 
+  {src: '/images/dress_en_2.jpeg', alt: 'Dress code 2'}, 
+  {src: '/images/dress_en_3.jpeg', alt: 'Dress code 3'}
+], es: [
+  {src: '/images/dress_es_1.png', alt: 'Dress code 1'},
+  {src: '/images/dress_es_2.png', alt: 'Dress code 2'},
+  {src: '/images/dress_es_3.png', alt: 'Dress code 3'}
+]};
 
 function RecommendationsSection({ language }) {
+
   return (
     <section>
       <h2>{texts[language].recommendationsTitle}</h2>
@@ -31,6 +43,16 @@ function RecommendationsSection({ language }) {
         <h3>{texts[language].activities}</h3>
         <p>{texts[language].recActivities1}</p>
         <p>{texts[language].recActivities2}</p>
+      </div>
+      <div className="rec-section">
+        <h3>{texts[language].dresscode}</h3>
+        <Gallery   
+          images={images[language]}
+          autoPlay={false}
+          autoPlayInterval={15000}
+          showThumbnails={true}
+          showCaption={false}
+        />
       </div>
     </section>
   );

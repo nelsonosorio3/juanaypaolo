@@ -8,17 +8,12 @@ function GiftsSection({ language }) {
       <h2>{texts[language].giftsTitle}</h2>
       <div className="gifts-text">
         <p>{texts[language].giftsText}</p>
-        <button
-          style={{
-            background: "#d68656",
-            color: "#fff",
-            border: "none",
-            padding: "0.5rem 1rem",
-            borderRadius: "4px"
-          }}
-        >
-          {texts[language].contributeText}
-        </button>
+        <p>{texts[language].gifts}</p>
+        <img src="/images/envelops.jpg" alt="envelops" style={{ width: "300px", height: "300px" }} />
+        <p>Paypal @JuaniOsorio1 </p>
+        <img src="/images/paypal.jpeg" alt="paypal" style={{ width: "300px", height: "300px" }} />
+        <p>Venmo @JuanaOsorio 9223</p>
+        <img src="/images/venmo.jpg" alt="venmo" style={{ width: "300px", height: "300px" }} />
       </div>
     </section>
   );
